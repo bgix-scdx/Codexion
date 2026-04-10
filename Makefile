@@ -129,9 +129,8 @@ sanitize: all
 
 valgrind: re
 	echo "\033[1;32m 👉 Executing with valgrind\033[0m"
-	$(CC) $(CFLAGS) $(NAME)
-	valgrind --leak-check=full ./a.out
-	rm -f a.out
+	valgrind --leak-check=full ./$(NAME)
+	rm -f $(NAME)
 	echo "\n\033[1;32mEnded >\033[0m"
 
 exec: re

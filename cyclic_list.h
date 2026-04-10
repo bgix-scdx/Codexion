@@ -63,4 +63,19 @@ cyclic_list *create_list()
     return (list);
 }
 
+void    clear_list(cyclic_list *list)
+{
+    list_part *tmp;
+
+    while (list->size != 0)
+    {
+        tmp = list->head->next;
+        free(list->head->value);
+        free(list->head);
+        list->head = tmp;
+        list->size--;
+    }
+    list->head = NULL;
+}
+
 #endif
