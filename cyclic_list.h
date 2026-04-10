@@ -78,4 +78,10 @@ void    clear_list(cyclic_list *list)
     list->head = NULL;
 }
 
+void    delete_list(cyclic_list *list)
+{
+    clear_list(list);
+    free(list);
+}
+
 #endif

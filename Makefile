@@ -129,7 +129,7 @@ sanitize: all
 
 valgrind: re
 	echo "\033[1;32m 👉 Executing with valgrind\033[0m"
-	valgrind --leak-check=full ./$(NAME)
+	valgrind --leak-check=full ./$(NAME) 10 10000 1000 2000 1000 10 5000 fifo
 	rm -f $(NAME)
 	echo "\n\033[1;32mEnded >\033[0m"
 

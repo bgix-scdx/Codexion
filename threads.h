@@ -6,7 +6,7 @@
 
 typedef struct s_thread{
     pthread_t thread_id;
-    void (*function);
+    void (*function)(void *);
     void *value;
 } thread;
 
