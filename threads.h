@@ -10,14 +10,14 @@ typedef struct s_thread{
     void *value;
 } thread;
 
-thread create_thread(void *function, void *value)
+thread *create_thread(void *function, void *value)
 {
-    thread tmp;
+    thread *tmp;
 
-    tmp = *(thread *)malloc(sizeof(thread));
-    tmp.function = function;
-    tmp.value = value;
-    pthread_create(&tmp.thread_id, NULL, (void *(*)(void *))function, value);
+    tmp = (thread *)malloc(sizeof(thread));
+    tmp->function = function;
+    tmp->value = value;
+    pthread_create(&tmp->thread_id, NULL, (void *(*)(void *))function, value);
     return (tmp);
 }
 

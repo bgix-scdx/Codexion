@@ -69,8 +69,9 @@ int main(int argc, char **argv)
         loop++;
     }
     loop = 0;
-    thread t = create_thread(error, "Hello world!");
-    pthread_join(t.thread_id, NULL);
+    thread *t = create_thread(error, "Hello world!");
+    pthread_join(t->thread_id, NULL);
+    free(t);
     printf("Done\n");
     delete_list(dongles);
     delete_list(coders);
