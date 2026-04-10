@@ -1,11 +1,12 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include "cyclic_list.h"
-
+# include <pthread.h>
 typedef struct t_dongle
 {
     bool    taken;
     int     id;
+    pthread_mutex_t mutex;
     int   last_used;
 }   dongle;
 
@@ -40,5 +41,6 @@ dongle *create_dongle(int id)
     tmp->taken = false;
     tmp->last_used = 0;
     tmp->id = id;
+    pthread_mutex_init(&tmp->mutex, NULL);
     return (tmp);
 }

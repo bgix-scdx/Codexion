@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "cyclic_list.h"
 #include "threads.h"
+#include "main.h"
 #include <string.h>
 void error(const char *text)
 {
@@ -37,10 +38,18 @@ int check_args(int argc, char **argv)
     return (0);
 }
 
+void stop(cyclic_list *dongles, cyclic_list *coders, cyclic_list *threads)
+{
+    delete_list(dongles);
+    delete_list(coders);
+    delete_list(threads);
+}
+
 int main(int argc, char **argv)
 {
     cyclic_list *dongles;
     cyclic_list *coders;
+    cyclic_list *threads;
     dongle      *tmp_dongle;
     coder       *tmp_coder;
     list_part *d1;
@@ -51,6 +60,7 @@ int main(int argc, char **argv)
         return (1);
     dongles = create_list();
     coders = create_list();
+    threads = create_list();
     loop = 0;
     while (loop < atoi(argv[1]))
     {
@@ -72,8 +82,7 @@ int main(int argc, char **argv)
     thread *t = create_thread(error, "Hello world!");
     pthread_join(t->thread_id, NULL);
     free(t);
+    stop(dongles, coders, threads);
     printf("Done\n");
-    delete_list(dongles);
-    delete_list(coders);
     return (0);
 }

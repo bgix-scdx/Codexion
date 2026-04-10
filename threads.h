@@ -1,8 +1,7 @@
 #ifndef THREADS_H
 # define THREADS_H
+# include "main.h"
 # include <pthread.h>
-# include <stdlib.h>
-# include <stdio.h>
 
 typedef struct s_thread{
     pthread_t thread_id;
