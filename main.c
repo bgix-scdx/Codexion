@@ -72,7 +72,7 @@ int main(int argc, char **argv)
     thread t = create_thread(error, "Hello world!");
     pthread_join(t.thread_id, NULL);
     printf("Done\n");
-    clear_list(dongles);
-    clear_list(coders);
+    delete_list(dongles);
+    delete_list(coders);
     return (0);
 }

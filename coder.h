@@ -6,14 +6,14 @@ typedef struct t_dongle
 {
     bool    taken;
     int     id;
-    float   *last_used;
+    int   last_used;
 }   dongle;
 
 typedef struct t_coder
 {
     int     id;
     int     status;
-    float   last_compile;
+    int     last_compile;
     dongle    *dongle1;
     dongle    *dongle2;
 }   coder;
@@ -37,9 +37,8 @@ dongle *create_dongle(int id)
 
     tmp = (dongle *)malloc(sizeof(dongle));
     tmp->taken = false;
-    tmp->last_used = (float *)malloc(sizeof(float));
     tmp->taken = false;
-    *tmp->last_used = 0.0;
+    tmp->last_used = 0;
     tmp->id = id;
     return (tmp);
 }
