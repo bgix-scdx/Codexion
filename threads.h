@@ -1,23 +1,15 @@
 #ifndef THREADS_H
 # define THREADS_H
+# include "coder.h"
 # include "main.h"
-# include <pthread.h>
 
 typedef struct s_thread{
     pthread_t   thread_id;
-    void        (*function)(void *);
+    void        (*function)(parg);
     void        *value;
+    int         *result;
 } thread;
 
-thread  *create_thread(void *function, void *value)
-{
-    thread  *tmp;
-
-    tmp = (thread *)malloc(sizeof(thread));
-    tmp->function = function;
-    tmp->value = value;
-    pthread_create(&tmp->thread_id, NULL, (void *(*)(void *))function, value);
-    return (tmp);
-}
+thread      *create_thread(void *function, settings set, coder *cdr, bool *start, struct timeval *t_start);
 
 #endif

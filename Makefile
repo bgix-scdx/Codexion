@@ -12,7 +12,12 @@ BFILE_COUNTER = .bfile_count
 OBJFOLDER = obj
 BOBJFOLDER = bonus_obj
 
-SOURCES = main.c 
+SOURCES =	main.c\
+			code.c\
+			coder.c\
+			threads.c\
+			display.c\
+			cyclic_list.c\
 
 B_SOURCES =
 
@@ -135,7 +140,7 @@ valgrind: re
 
 exec: re
 	echo "\033[1;32m 👉 Executing \033[0m"
-	./$(NAME) 10 10000 1000 2000 1000 10 5000 fifo
+	./$(NAME) 10 3000 200 100 200 10 400 fifo
 	rm -f $(NAME)
 	echo "\n\033[1;32m 👉 Ended.\033[0m"
 

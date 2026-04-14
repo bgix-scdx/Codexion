@@ -1,7 +1,7 @@
-# include <stdbool.h>
-# include <stdio.h>
-# include "cyclic_list.h"
-# include <pthread.h>
+#ifndef CODER_H
+# define CODER_H
+# include "main.h"
+
 typedef struct t_dongle
 {
     bool			taken;
@@ -10,37 +10,31 @@ typedef struct t_dongle
     int				last_used;
 }   dongle;
 
+//status:
+//0 = compiling
+//1 = debugging
+//2 = refactoring
+//3 = Burnt-out
 typedef struct t_coder
 {
-    int		id;
-    int		status;
-    int		last_compile;
-    dongle	*dongle1;
-    dongle	*dongle2;
+    int		        id;
+    int		        status;
+	int		        compilation;
+    struct timeval  last_compile;
+    dongle	        *dongle1;
+    dongle	        *dongle2;
 }   coder;
 
-coder	*create_coder(int id, void *right, void *left)
-{
-	coder	*tmp;
+typedef struct parg{
+    settings    req;
+    coder       *me;
+    bool        *start;
+    int         result;
+    struct timeval  *t_start;
+} parg;
 
-	tmp = (coder *)malloc(sizeof(coder));
-	tmp->id = id;
-	tmp->dongle1 = left;
-	tmp->dongle2 = right;
-	tmp->status = 0;
-	tmp->last_compile = 0;
-	return (tmp);
-}
+coder	*create_coder(int id, void *right, void *left);
+dongle	*create_dongle(int id);
+void     handle_coder(parg *args);
 
-dongle	*create_dongle(int id)
-{
-	dongle *tmp;
-
-	tmp = (dongle *)malloc(sizeof(dongle));
-	tmp->taken = false;
-	tmp->taken = false;
-	tmp->last_used = 0;
-	tmp->id = id;
-	pthread_mutex_init(&tmp->mutex, NULL);
-	return (tmp);
-}
+#endif
