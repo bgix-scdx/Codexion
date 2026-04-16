@@ -1,4 +1,5 @@
 .SILENT:
+
 AR = ar 
 AR_PARAMS = rc
 
@@ -12,12 +13,11 @@ BFILE_COUNTER = .bfile_count
 OBJFOLDER = obj
 BOBJFOLDER = bonus_obj
 
-SOURCES =	main.c\
-			code.c\
-			coder.c\
-			threads.c\
-			display.c\
-			cyclic_list.c\
+SOURCES =	codexion.c\
+			c_files/cyclic_list.c\
+			c_files/mallocs.c\
+			c_files/manager.c\
+			c_files/coders.c\
 
 B_SOURCES =
 
@@ -123,12 +123,12 @@ $(OBJFOLDER)/%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJECTS) $(MAIN_OBJECT)
-	$(CC) $(params) $(OBJECTS) -o $(NAME)
+	$(CC) $(CFLAGS) $(params) $(OBJECTS) -o $(NAME)
 
 sanitize: all
 	echo "\033[1;32m 👉 Executing\033[0m"
 	echo "\033[0;32m 💧 Memory leak will show up if present\033[0m"
-	./$(NAME)
+	leaks --atExit -- ./$(NAME)
 	rm -f $(NAME)
 	echo "\n\033[1;32mEnded >\033[0m"
 

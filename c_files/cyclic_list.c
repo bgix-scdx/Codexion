@@ -1,5 +1,6 @@
-#include "cyclic_list.h"
-#include "main.h"
+#include "../headers/cyclic_list.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 void insert_back(cyclic_list *list, void *value)
 {
@@ -31,10 +32,11 @@ void insert_front(cyclic_list *list, void *value)
     list->head = list->head->previous;
 }
 
-void rotate_list(cyclic_list *list)
+int rotate_list(cyclic_list *list)
 {
     if (list->size > 0)
         list->head = list->head->next;
+    return (1);
 }
 
 cyclic_list *create_list()
@@ -60,25 +62,28 @@ void    remove_head(cyclic_list *list)
     list->size--;
     free(tmp->value);
     free(tmp);
+    tmp = NULL;
 }
 
 void    clear_list(cyclic_list *list)
 {
     list_part *tmp;
-
     while (list->size != 0)
     {
         tmp = list->head->next;
         free(list->head->value);
+        list->head->value=NULL;
         free(list->head);
+        list->head = NULL;
         list->head = tmp;
         list->size--;
     }
     list->head = NULL;
 }
 
-void    delete_list(cyclic_list *list)
+void    *delete_list(cyclic_list *list)
 {
     clear_list(list);
     free(list);
+    return (NULL);
 }

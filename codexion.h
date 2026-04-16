@@ -1,15 +1,5 @@
-#ifndef MAIN_H
-# define MAIN_H
-# include <pthread.h>
-# include <stdlib.h> 
-# include <stdio.h>
-# include <stdbool.h>
-# include <pthread.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <sys/time.h>
-# include <unistd.h>
+#ifndef CODEXION_H
+# define CODEXION_H
 
 typedef struct settings
 {
@@ -22,5 +12,6 @@ typedef struct settings
     int     time_to_burnout;
     char    *scheduler;
 } settings;
+
 
 #endif
