@@ -1,6 +1,6 @@
 #include "../headers/manager.h"
 #include "../headers/coders.h"
-
+#include <stdio.h>
 cyclic_list *threads_launchers(settings set, manager_dats *dats)
 {
     cyclic_list *Cthreads;
@@ -25,6 +25,5 @@ int manager(settings set)
     datas->burnt_out = 0;
     datas->count = 0;
     threads_launchers(set, datas);
-
-    return(0);
+    return(make_malloc(0) || 0);
 }

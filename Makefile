@@ -4,7 +4,7 @@ AR = ar
 AR_PARAMS = rc
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -pthread
+CFLAGS = -Wall -Wextra -Werror -pthread -g3
 LEAKFLAGS = -fsanitize=address -g3 -fno-omit-frame-pointer
 
 FILE_COUNTER = .file_count
@@ -84,7 +84,7 @@ fclean:	clean
 
 re: fclean all
 
-debug:
+debug: re
 	echo "\033[1;32m 👉 Debugging \033[0m"
 	echo "\033[0;32m	| br set -n [function] : set break point at function \033[0m"
 	echo "\033[0;32m	| r : run the function \033[0m"

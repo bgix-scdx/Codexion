@@ -1,3 +1,3 @@
 #include <stdlib.h>
 
-void    *make_malloc(long size);
+void    *make_malloc(unsigned long size);

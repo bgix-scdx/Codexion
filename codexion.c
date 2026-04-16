@@ -26,7 +26,6 @@ int check_args(int argc, char **argv)
     }
     if (strcmp(argv[argc - 1], "fifo") != 0 && strcmp(argv[argc - 1], "edf") != 0)
     {
-
         printf("Error, last argument must be either 'fifo' or 'edf' !");
         return (1);
     }
@@ -52,5 +51,6 @@ int main(int argc, char **argv)
 {
     if (check_args(argc, argv))
         return(1);
+
     return (manager(save_set(argv)));
 }
