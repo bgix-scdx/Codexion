@@ -1,16 +1,13 @@
 #include "../headers/cyclic_list.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include "../headers/mallocs.h"
 
 void insert_back(cyclic_list *list, void *value)
 {
     list_part *new_part;
     list_part *last_part;
 
-    new_part = malloc(sizeof(list_part));
-    if (!new_part)
-        return;
+    new_part = (list_part *)malloc(sizeof(list_part));
     new_part->value = value;
     if (list->size == 0)
     {
@@ -46,7 +43,7 @@ cyclic_list *create_list()
 {
     cyclic_list *list;
 
-    list = make_malloc(sizeof(cyclic_list));
+    list = (cyclic_list *)malloc(sizeof(cyclic_list));
     list->size = 0;
     list->head = NULL;
     return (list);
@@ -54,30 +51,38 @@ cyclic_list *create_list()
 
 void    remove_head(cyclic_list *list)
 {
-    list_part *tmp;
+    //list_part *tmp;
 
     if (list->size <= 1)
-        return ((void)delete_list(list));
-    tmp = list->head;
+    {
+        clear_list(list);
+        return;
+    }
+    //tmp = list->head;
     list->head->next->previous = list->head->previous;
     list->head->previous->next = list->head->next;
     list->head = list->head->next;
     list->size--;
-    free(tmp->value);
-    free(tmp);
+
+    // freeing cause the time to break, to fix
+    //free(tmp->value);
+    //free(tmp);
 }
 
 void    clear_list(cyclic_list *list)
 {
     list_part *tmp;
-    while (list->size > 0 && list->size--)
+    while (list->size != 0)
     {
         tmp = list->head->next;
         free(list->head->value);
+        list->head->value=NULL;
         free(list->head);
         list->head = NULL;
         list->head = tmp;
+        list->size--;
     }
+    list->size = 0;
     list->head = NULL;
 }
 

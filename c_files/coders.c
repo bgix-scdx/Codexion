@@ -1,5 +1,5 @@
 #include "../headers/coders.h"
-#include <stdio.h>
+
 coder       *make_coder(int id, cyclic_list *dongles)
 {
     coder   *tmp;
@@ -32,6 +32,8 @@ dongle  *make_dongle(int id)
 
     tmp = make_malloc(sizeof(dongle));
     tmp->id = id;
+    tmp->taken = false;
+    pthread_mutex_init(&tmp->mutex, NULL);
     return (tmp);
 }
 

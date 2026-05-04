@@ -4,7 +4,7 @@ AR = ar
 AR_PARAMS = rc
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -pthread -g3
+CFLAGS = -Wall -Wextra -Werror -pthread
 LEAKFLAGS = -fsanitize=address -g3 -fno-omit-frame-pointer
 
 FILE_COUNTER = .file_count
@@ -18,6 +18,7 @@ SOURCES =	codexion.c\
 			c_files/mallocs.c\
 			c_files/manager.c\
 			c_files/coders.c\
+			c_files/coderalgo.c\
 
 B_SOURCES =
 
@@ -84,7 +85,7 @@ fclean:	clean
 
 re: fclean all
 
-debug: re
+debug:
 	echo "\033[1;32m 👉 Debugging \033[0m"
 	echo "\033[0;32m	| br set -n [function] : set break point at function \033[0m"
 	echo "\033[0;32m	| r : run the function \033[0m"
@@ -140,7 +141,7 @@ valgrind: re
 
 exec: re
 	echo "\033[1;32m 👉 Executing \033[0m"
-	./$(NAME) 10 3000 200 100 200 10 400 fifo
+	./$(NAME) 10 3000 200000 100000 200000 10 400 fifo
 	rm -f $(NAME)
 	echo "\n\033[1;32m 👉 Ended.\033[0m"
 

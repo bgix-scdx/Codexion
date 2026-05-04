@@ -2,18 +2,16 @@
 #include "../headers/mallocs.h"
 #include <stdio.h>
 
-void    *make_malloc(unsigned long size)
+void    *make_malloc(long size)
 {
     static cyclic_list *malloc_list;
     void *tmp;
 
-    if (size == 0 && malloc_list)
+    if (size == -1 && malloc_list)
         return (delete_list(malloc_list));
     else if (!malloc_list)
     {
-        malloc_list = (cyclic_list *)malloc(sizeof(cyclic_list));
-        malloc_list->head = NULL;
-        malloc_list->size = 0;
+        malloc_list = create_list();
         if (!malloc_list)
             return (NULL);
     }
