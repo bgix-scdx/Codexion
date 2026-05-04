@@ -1,7 +1,7 @@
 #ifndef CODEXION_H
 # define CODEXION_H
 
-typedef struct settings
+typedef struct t_settings
 {
     int     number_of_coders;
     int     time_to_compile;
@@ -11,7 +11,7 @@ typedef struct settings
     int     dongle_cooldown;
     int     time_to_burnout;
     char    *scheduler;
-} settings;
+} t_settings;
 
 
 #endif

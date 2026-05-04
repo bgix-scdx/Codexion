@@ -1,26 +1,26 @@
 #ifndef CYCLIC_LIST
 # define CYCLIC_LIST
 
-typedef struct list_part
+typedef struct t_list_part
 {
-    void *value;
-    struct list_part *next;
-    struct list_part *previous;
-} list_part;
+	void				*value;
+	struct t_list_part	*next;
+	struct t_list_part	*previous;
+}	t_list_part;
 
-typedef struct cyclic_list
+typedef struct t_cl
 {
-   int size;
-   list_part *head;
-} cyclic_list;
+	int			size;
+	t_list_part	*head;
+}	t_cl;
 
 
-void        insert_back(cyclic_list *list, void *value);
-void        insert_front(cyclic_list *list, void *value);
-int        rotate_list(cyclic_list *list);
-cyclic_list *create_list();
-void        clear_list(cyclic_list *list);
-void        *delete_list(cyclic_list *list);
-void        remove_head(cyclic_list *list);
+void			insert_back(t_cl *list, void *value);
+void			insert_front(t_cl *list, void *value);
+int				rotate_list(t_cl *list);
+t_cl			*create_list(void);
+void			clear_list(t_cl *list);
+void			*delete_list(t_cl *list);
+void			remove_head(t_cl *list);
 
 #endif

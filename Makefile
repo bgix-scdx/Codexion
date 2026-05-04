@@ -141,7 +141,7 @@ valgrind: re
 
 exec: re
 	echo "\033[1;32m 👉 Executing \033[0m"
-	./$(NAME) 10 3000 200000 100000 200000 10 400 fifo
+	./$(NAME) 2 1000000 1000000 1000000 100000 500000 400000 fifo
 	rm -f $(NAME)
 	echo "\n\033[1;32m 👉 Ended.\033[0m"
 

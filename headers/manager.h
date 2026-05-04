@@ -5,14 +5,23 @@
 # include "../headers/mallocs.h"
 # include "../codexion.h"
 
-typedef struct manager_dats
+typedef struct t_md
 {
-    int count;
-    int *burnt_out;
-    pthread_mutex_t *print;
-} manager_dats;
+	int				count;
+	int				*burnt_out;
+	pthread_mutex_t	*print;
+}	t_md;
 
-cyclic_list *threads_launchers(settings set, manager_dats *dats);
-int manager(settings set);
+typedef struct t_ts
+{
+	int					i;
+	int					started;
+	unsigned long		thread;
+}	t_ts;
+
+
+
+void	threads_launchers(t_settings set, t_md *dats);
+int		manager(t_settings set);
 
 #endif
